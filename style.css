@@ -19,7 +19,8 @@ body{
     align-items: center;
     justify-content: center;
     width: 50%;
-    margin-top: 10%;
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
 .mode-bar{
     display: flex;
@@ -45,6 +46,8 @@ body{
     align-items: center;
     justify-content: center;
     float: right;
+
+    padding-bottom: 5%;
 }
 .theme{
     display: inline;
@@ -93,15 +96,46 @@ body{
     float: left;
     background-color:#D03F2F ;
     margin: 4px;
+    cursor: pointer;
 }
 
+
+/* rezult */
 .rezult{
     background-color: #181F33;
+    border-radius: 10px;
+    margin-bottom: 5%;
+
     width: 100%;
+    /* height: 100px;    */
+    padding: 5% 0px 5% 0px;
+    display: flex;
+    align-items: center;
+    justify-content: right;
 }
+.rez{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    text-align: right;
+    letter-spacing: -0.8px;
+    color: #FFFFFF;
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+@media (max-width:375px){
+    .rezult{
+        height: 88px;
+    }
+}
+
+/* buttons */
 .container{
     background-color: #242D44;
+    border-radius: 10px;
     width: 100%;
+    height: 350px;
 }
 .col{
 
