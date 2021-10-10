@@ -225,3 +225,28 @@ button:hover{
         font-size: 16px;
     }
 }
+
+/* mode 2 */
+.mode2-big-blue-btn{
+    background: #378187 !important;
+    box-shadow: inset 0px -4px 0px #1B6066 !important;
+}
+.mode2-big-orange-btn{
+    background: #C85402 !important;
+    box-shadow: inset 0px -4px 0px #873901 !important;
+}
+
+/* mode 3 */
+
+.mode3-num-btn{
+    background: #331C4D !important;
+    box-shadow: inset 0px -4px 0px #881C9E !important;
+}
+.mod3-big-putple-btn{
+    background: #56077C !important;
+    box-shadow: inset 0px -4px 0px #BE15F4 !important;
+}
+.mode3-big-blue-btn{
+    background: #00DED0 !important;
+    box-shadow: inset 0px -4px 0px #6CF9F1 !important;
+}
