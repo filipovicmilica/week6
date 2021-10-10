@@ -18,9 +18,19 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 50%;
+    width: 40%;
     margin-top: 5%;
     margin-bottom: 5%;
+}
+@media (max-width:700px){
+    .main{
+        width: 70%;
+    }
+}
+@media (max-width:375px){
+    .main{
+        width: 90%;
+    }
 }
 .mode-bar{
     display: flex;
@@ -108,7 +118,7 @@ body{
 
     width: 100%;
     /* height: 100px;    */
-    padding: 5% 0px 5% 0px;
+    padding: 2%;
     display: flex;
     align-items: center;
     justify-content: right;
@@ -122,25 +132,96 @@ body{
     color: #FFFFFF;
     margin-right: 5%;
     margin-left: 5%;
+    padding: 5px;
 }
 
 @media (max-width:375px){
     .rezult{
-        height: 88px;
+        height: 65px;
+    }
+    .rez{
+        font-size: 32px;
     }
 }
 
 /* buttons */
 .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
     background-color: #242D44;
     border-radius: 10px;
     width: 100%;
-    height: 350px;
-}
-.col{
+    /* height: 350px; */
 
+    padding:2% ;
+}
+.row{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.button{
+    justify-content: center;
+    align-items: center;
+    background: #EAE3DC;
+    box-shadow: inset 0px -4px 0px #B3A497;
+    border-radius: 10px;
+    /* flex-basis: 25%; */
+    /* width: 100%;
+    height: 100%; */
+    width: 101px;
+    height: 64px;
+
+    margin: 5px;
+    cursor: pointer;
+}
+button:hover{
+    filter: brightness(1.5);
+}
+.btn-num{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 36px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: -0.533333px;
+    color: #434A59;
+}
+.btn-text{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: -0.333333px;
+    color: #FFFFFF;
+}
+.btn-red{
+    background: #D03F2F;
+    box-shadow: inset 0px -4px 0px #93261A;
+}
+.btn-blue{
+    text-transform: uppercase;
+    background: #647198;
+    box-shadow: inset 0px -4px 0px #414E73;
+}
+.btn-big{
+    width: 202px;
 }
 
 @media (max-width:375px){
-
+    .btn-num{
+        font-size: 28px;
+    }
+    .btn-text{
+        font-size: 16px;
+    }
 }
