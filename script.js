@@ -80,3 +80,7 @@ circle.addEventListener("click",function(){
         });
     }
 })
+
+function btnFunction(val){
+    alert(val);
+}
