@@ -107,6 +107,11 @@ body{
     background-color:#D03F2F ;
     margin: 4px;
     cursor: pointer;
+    position: 0px 0px 0px 0px;
+    transition: .4s;
+    /* transform: translateX(25px); mode 2*/
+    /* transform: translateX(48px); mode 3*/
+    transform: translateX(calc());
 }
 
 
@@ -227,6 +232,9 @@ button:hover{
 }
 
 /* mode 2 */
+.mod2{
+    transform: translateX(25px);
+}
 .mode2-big-blue-btn{
     background: #378187 !important;
     box-shadow: inset 0px -4px 0px #1B6066 !important;
@@ -237,7 +245,9 @@ button:hover{
 }
 
 /* mode 3 */
-
+.mod3{
+    transform: translateX(48px);
+}
 .mode3-num-btn{
     background: #331C4D !important;
     box-shadow: inset 0px -4px 0px #881C9E !important;
