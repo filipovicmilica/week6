@@ -38,7 +38,7 @@ body{
     justify-content: center;
     width: 100%;
 }
-.mode-bar h2{
+.calc{
     text-transform: lowercase;
     width: 100%;
     padding-right: 20px;
@@ -235,9 +235,18 @@ button:hover{
 .mod2{
     transform: translateX(25px);
 }
+.text2{
+    color:#36362C !important;
+}
+.mode2-num-btn{
+    background: #E5E4E1;
+    box-shadow: inset 0px -4px 0px #A79E91;
+    color:#36362C !important;
+}
 .mode2-big-blue-btn{
     background: #378187 !important;
     box-shadow: inset 0px -4px 0px #1B6066 !important;
+    color: white !important;
 }
 .mode2-big-orange-btn{
     background: #C85402 !important;
@@ -248,15 +257,21 @@ button:hover{
 .mod3{
     transform: translateX(48px);
 }
+.text3{
+    color: #FFE53D !important;
+}
 .mode3-num-btn{
     background: #331C4D !important;
     box-shadow: inset 0px -4px 0px #881C9E !important;
+    color: #FFE53D !important;
 }
 .mod3-big-putple-btn{
     background: #56077C !important;
     box-shadow: inset 0px -4px 0px #BE15F4 !important;
+    color: white !important;
 }
 .mode3-big-blue-btn{
     background: #00DED0 !important;
     box-shadow: inset 0px -4px 0px #6CF9F1 !important;
+    color: #1E0936 !important;
 }
