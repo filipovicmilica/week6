@@ -139,7 +139,7 @@ function btnFunction(val){
                 break;
             }
             else if(op1 && op2){
-
+                if(op1=='0'){rez.textContent='error';break;}
                 switch(operation){
                     case '+':op1+=op2;break;
                     case '-':op1-=op2;break;
