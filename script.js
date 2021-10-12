@@ -1,18 +1,19 @@
-var body=document.querySelector("body");
-var circle=document.getElementById("circle");
-var bar=document.querySelector(".bar");
-var rezScrean=document.querySelector(".rezult");
-var rez=document.querySelector(".rez");
-var container=document.querySelector(".container");
-var calc=document.querySelector(".calc");
-var theme=document.querySelector(".theme");
-var lilnums=document.querySelector(".little-numbers");
-
-var buttons=document.querySelectorAll(".btn-num");
-var btnBigBlue=document.querySelectorAll(".btn-blue");
-var btnBigRed=document.querySelector(".btn-red");
+const circle=document.getElementById("circle");
+let rez=document.querySelector(".rez");
 
 circle.addEventListener("click",function(){
+    let body=document.querySelector("body");
+    let bar=document.querySelector(".bar");
+    let rezScrean=document.querySelector(".rezult");
+   
+    let container=document.querySelector(".container");
+    let calc=document.querySelector(".calc");
+    let theme=document.querySelector(".theme");
+    let lilnums=document.querySelector(".little-numbers");
+
+    let buttons=document.querySelectorAll(".btn-num");
+    let btnBigBlue=document.querySelectorAll(".btn-blue");
+    let btnBigRed=document.querySelector(".btn-red");
 
     if(!circle.classList.contains("mod2") && !circle.classList.contains("mod3")){// switch to mod2
         circle.classList.toggle("mod2");//push
@@ -81,6 +82,173 @@ circle.addEventListener("click",function(){
     }
 })
 
+let op1=null;
+let op2=null;
+let operation=null;
 function btnFunction(val){
-    alert(val);
+    // alert(val);
+    switch(val){
+        case '+':{
+            if(op1 && !op2 && !operation){
+                operation='+';
+                break;
+            }
+            else if(op1 && op2){
+
+                switch(operation){
+                    case '+':op1+=op2;break;
+                    case '-':op1-=op2;break;
+                    case '/':op1/=op2;break;
+                    case 'x':op1*=op2;break;
+                }
+                rez.textContent=op1;
+                op2=null; operation='+';
+                break;
+            }else{
+                break;
+            }
+        };
+        case '-':{
+            if(!op1){
+                op1='0';
+                operation='-';
+                break;
+            }
+            else if(op1 && !op2 && !operation){
+                operation='-';
+                break;
+            }
+            else if(op1 && op2){
+
+                switch(operation){
+                    case '+':op1+=op2;break;
+                    case '-':op1-=op2;break;
+                    case '/':op1/=op2;break;
+                    case 'x':op1*=op2;break;
+                }
+                rez.textContent=op1;
+                op2=null; operation='-';
+                break;
+            }else{
+                break;
+            }
+        };
+        case '/':{
+            if(op1 && !op2 && !operation){
+                operation='/';
+                break;
+            }
+            else if(op1 && op2){
+
+                switch(operation){
+                    case '+':op1+=op2;break;
+                    case '-':op1-=op2;break;
+                    case '/':op1/=op2;break;
+                    case 'x':op1*=op2;break;
+                }
+                rez.textContent=op1;
+                op2=null; operation='/';
+                break;
+            }else{
+                break;
+            }
+        };
+        case 'x':{
+            if(op1 && !op2 && !operation){
+                operation='x';
+                break;
+            }
+            else if(op1 && op2){
+
+                switch(operation){
+                    case '+':op1+=op2;break;
+                    case '-':op1-=op2;break;
+                    case '/':op1/=op2;break;
+                    case 'x':op1*=op2;break;
+                }
+                rez.textContent=op1;
+                op2=null; operation='x';
+                break;
+            }else{
+                break;
+            }
+        };
+        case '.':break;
+        case 'del':{
+            if(op1 && !op2 && !operation){
+                op1=op1.toString().slice(0,op1.toString().length-1);
+                rez.textContent=op1;
+                break;
+            }else if(op1 && !op2 && operation){
+                operation=null;
+                break;
+            }else if(op1 && operation && op2){
+                op2=op2.toString().slice(0,op2.toString().length-1);
+                rez.textContent=op2;
+                break;
+            }
+            else{break;}
+        };
+        case '=':{
+            if(op1 && op2 && operation){
+                switch(operation){
+                    case '+':op1+=op2;break;
+                    case '-':op1-=op2;break;
+                    case '/':op1/=op2;break;
+                    case 'x':op1*=op2;break;
+                }
+                rez.textContent=op1;
+                // op1=null;
+                op2=null;
+                operation=null;
+                break;
+            }
+            else if(op1 && !op2 && !operation){
+                // op1=null;
+                break;
+            }else{//error
+                op1=null;
+                op2=null;
+                operation=null;
+                rez.textContent='error';
+                break;
+            }
+        };
+        case 'reset':{
+            rez.textContent='0';
+            op1=null;
+            op2=null;
+            operatin=null;
+            break;
+        };
+        default:{//ako broj
+            if(!op1){
+                op1=val;
+                rez.textContent=op1;
+                break;
+            }else if(op1=='0' && !op2 && operation=='-'){
+                op1=-val;
+                operation=null;
+                rez.textContent=op1;
+                break;
+            }else if(op1 && !operation){
+                if(op1<0){
+                    op1=op1*10-val;
+                }
+                else{
+                    op1=op1*10+val;
+                }
+                rez.textContent=op1;
+                break;
+            }else if(op1 && !op2 && operation){
+                op2=val;
+                rez.textContent=op2;
+                break;
+            }else if(op1 && op2 && operation){
+                op2=op2*10+val;
+                rez.textContent=op2;
+                break;
+            }
+        };
+    }
 }
