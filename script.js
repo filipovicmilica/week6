@@ -95,7 +95,7 @@ function btnFunction(val){
                 break;
             }
             else if(op1 && op2){
-
+                // alert(op1+"+" +op2);
                 switch(operation){
                     case '+':op1+=op2;break;
                     case '-':op1-=op2;break;
@@ -108,7 +108,7 @@ function btnFunction(val){
             }else{
                 break;
             }
-        };
+        }
         case '-':{
             if(!op1){
                 op1='0';
@@ -175,8 +175,36 @@ function btnFunction(val){
             }
         };
         case '.':{
-
-            break;
+            if(!op1){
+                alert('tacka');
+                op1='0'+val;
+                rez.textContent=op1;
+                break;
+            }else if(op1 && !operation){
+                if(op1.toString().includes('.',1)){
+                    alert('vec ima tacku');
+                   break;
+                }else{
+                    alert('posle tacke dodaj br');
+                    op1=op1.toString()+val;
+                    rez.textContent=op1;
+                    break;
+                }
+            }else if(op1 && !op2 && operation){
+                alert('tacka 2');
+                op2='0'+val;
+                rez.textContent=op2;
+                break;
+            }else if(op1 && op2 && operation){
+                if(op2.toString().includes('.',1)){
+                    alert('vec ima tacku 2');
+                   break;
+                }else{
+                    op2=op2.toString()+val;
+                    rez.textContent=op2;
+                    break;
+                }
+            }
         }
         case 'del':{
             if(op1 && !op2 && !operation){
@@ -184,8 +212,10 @@ function btnFunction(val){
                     op1=null;
                     rez.textContent='0';
                 }else{
-                    op1=op1.toString().slice(0,op1.toString().length-1);
-                    rez.textContent=op1.toString().length==0 ? '0' : op1;
+                    let temp=op1.toString().slice(0,op1.toString().length-1);//string
+                    op1=temp.toString().length==0 ? null : parseInt(temp);
+                    alert('op1='+op1);
+                    rez.textContent=op1? op1: '0';
                 }
                 break;
             }else if(op1 && !op2 && operation){
@@ -196,8 +226,9 @@ function btnFunction(val){
                     op2=null;
                     rez.textContent='0';
                 }else{
-                    op2=op2.toString().slice(0,op2.toString().length-1);
-                    rez.textContent=op2.toString().length==0 ? '0' : op2;
+                    let temp=op2.toString().slice(0,op2.toString().length-1);// type string
+                    op2=temp.toString().length==0 ? null : parseInt(temp);
+                    rez.textContent=op2 ? op2 : '0';
                 }
                 break;
             }else{break;}
@@ -245,11 +276,16 @@ function btnFunction(val){
                 rez.textContent=op1;
                 break;
             }else if(op1 && !operation){
-                if(op1<0){
-                    op1=op1*10-val;
-                }
-                else{
-                    op1=op1*10+val;
+                if(!op1.toString().includes('.',1)){
+                    if(op1<0){
+                        op1=op1*10-val;
+                    }
+                    else{
+                        op1=op1*10+val;
+                    }
+                }else{//decimal
+                    op1=parseFloat(op1.toString().concat(val));
+                    // alert(op1);
                 }
                 rez.textContent=op1;
                 break;
@@ -258,7 +294,12 @@ function btnFunction(val){
                 rez.textContent=op2;
                 break;
             }else if(op1 && op2 && operation){
-                op2=op2*10+val;
+                if(!op2.toString().includes('.',1)){
+                    op2=op2*10+val;
+                }else{//decimal
+                    op2=parseFloat(op2.toString().concat(val));
+                    alert(op2);
+                }
                 rez.textContent=op2;
                 break;
             }
