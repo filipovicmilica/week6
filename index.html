@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <title>Week6</title>
+</head>
+<body>
+  <section class="main">
+
+    <div class="mode-bar">
+      <h2 class="calc">calc</h2>
+      <div class="div-mode">
+        <span class="theme">theme</span>
+        <div>
+          <div class="little-numbers">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+          </div>
+          <div class="bar">
+            <div class="circle" id="circle"></div>
+          </div>
+        </div> 
+      </div>
+    </div>
+
+    <div class="rezult">
+      <span class="rez">
+        0
+        <!-- 399,981 -->
+      </span>
+    </div>
+    <div class="container">
+      <div class="row">
+        <button class="button btn-num" value="7" onclick="btnFunction(7)">7</button>
+        <button class="button btn-num" value="8" onclick="btnFunction(8)">8</button>
+        <button class="button btn-num" value="9" onclick="btnFunction(9)">9</button>
+        <button class="button btn-text btn-blue" value="del" onclick="btnFunction('del')">del</button>
+      </div>
+      <div class="row">
+        <button class="button btn-num" value="4" onclick="btnFunction(4)">4</button>
+        <button class="button btn-num" value="5" onclick="btnFunction(5)">5</button>
+        <button class="button btn-num" value="6" onclick="btnFunction(6)">6</button>
+        <button class="button btn-num" value="+" onclick="btnFunction('+')">+</button>
+      </div>
+      <div class="row">
+        <button class="button btn-num" value="1" onclick="btnFunction(1)">1</button>
+        <button class="button btn-num" value="2" onclick="btnFunction(2)">2</button>
+        <button class="button btn-num" value="3" onclick="btnFunction(3)">3</button>
+        <button class="button btn-num" value="-" onclick="btnFunction('-')">-</button>
+      </div>
+      <div class="row">
+        <button class="button btn-num" value="." onclick="btnFunction('.')">.</button>
+        <button class="button btn-num" value="0" onclick="btnFunction(0)">0</button>
+        <button class="button btn-num" value="/" onclick="btnFunction('/')">/</button>
+        <button class="button btn-num" value="x" onclick="btnFunction('x')">x</button>
+      </div>
+      <div class="row">
+        <button class="button btn-text btn-blue btn-big" value="reset" onclick="btnFunction('reset')">reset</button>
+        <button class="button btn-text btn-red btn-big" value="=" onclick="btnFunction('=')">=</button>
+      </div>
+
+    </div>
+    
+    <script src="script.js"></script>
+  </section>
+
+</body>
+</html>
