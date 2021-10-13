@@ -199,7 +199,6 @@ function btnFunction(val){
                 }
                 rez.textContent=op1;
                 // op1=null;
-                //nestoo
                 op2=null;
                 operation=null;
                 break;
