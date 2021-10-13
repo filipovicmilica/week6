@@ -127,6 +127,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: right;
+    min-height: 70px;
 }
 .rez{
     font-style: normal;

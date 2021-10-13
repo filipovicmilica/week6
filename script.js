@@ -85,6 +85,7 @@ circle.addEventListener("click",function(){
 let op1=null;
 let op2=null;
 let operation=null;
+// let eq=false;
 function btnFunction(val){
     // alert(val);
     switch(val){
@@ -173,21 +174,33 @@ function btnFunction(val){
                 break;
             }
         };
-        case '.':break;
+        case '.':{
+
+            break;
+        }
         case 'del':{
             if(op1 && !op2 && !operation){
-                op1=op1.toString().slice(0,op1.toString().length-1);
-                rez.textContent=op1;
+                if(op1.toString().includes('-',0) && op1.toString().length==2){
+                    op1=null;
+                    rez.textContent='0';
+                }else{
+                    op1=op1.toString().slice(0,op1.toString().length-1);
+                    rez.textContent=op1.toString().length==0 ? '0' : op1;
+                }
                 break;
             }else if(op1 && !op2 && operation){
                 operation=null;
                 break;
             }else if(op1 && operation && op2){
-                op2=op2.toString().slice(0,op2.toString().length-1);
-                rez.textContent=op2;
+                if(op2.toString().length==2 && op2.toString().includes('-',0)){
+                    op2=null;
+                    rez.textContent='0';
+                }else{
+                    op2=op2.toString().slice(0,op2.toString().length-1);
+                    rez.textContent=op2.toString().length==0 ? '0' : op2;
+                }
                 break;
-            }
-            else{break;}
+            }else{break;}
         };
         case '=':{
             if(op1 && op2 && operation){
@@ -221,7 +234,7 @@ function btnFunction(val){
             operatin=null;
             break;
         };
-        default:{//ako broj
+        default:{//if number
             if(!op1){
                 op1=val;
                 rez.textContent=op1;
@@ -249,6 +262,6 @@ function btnFunction(val){
                 rez.textContent=op2;
                 break;
             }
-        };
+        }
     }
 }
