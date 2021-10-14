@@ -299,7 +299,7 @@ function btnFunction(val){
                 rez.textContent=op1;
                 break;
             }else if(op1 && !op2 && operation){
-                op2=val;
+                op2=val=='0'? '0' :val ;
                 rez.textContent=op2;
                 break;
             }else if(op1 && op2 && operation){
