@@ -85,7 +85,7 @@ circle.addEventListener("click",function(){
 let op1=null;
 let op2=null;
 let operation=null;
-// let eq=false;
+let eq=false;
 function btnFunction(val){
     // alert(val);
     switch(val){
@@ -207,7 +207,7 @@ function btnFunction(val){
             }
         }
         case 'del':{// if it 'del' a decimal number then all decimals after '.' are delited
-            if(op1 && !op2 && !operation){
+            if(!eq && op1 && !op2 && !operation){
                 if(op1.toString().includes('-',0) && op1.toString().length==2){
                     op1=null;
                     rez.textContent='0';
@@ -218,10 +218,10 @@ function btnFunction(val){
                     rez.textContent=op1? op1: '0';
                 }
                 break;
-            }else if(op1 && !op2 && operation){
+            }else if(!eq && op1 && !op2 && operation){
                 operation=null;
                 break;
-            }else if(op1 && operation && op2){
+            }else if(!eq && op1 && operation && op2){
                 if(op2.toString().length==2 && op2.toString().includes('-',0)){
                     op2=null;
                     rez.textContent='0';
@@ -245,15 +245,18 @@ function btnFunction(val){
                 // op1=null;
                 op2=null;
                 operation=null;
+                eq=true;
                 break;
             }
             else if(op1 && !op2 && !operation){
                 // op1=null;
+                // eq=true;
                 break;
             }else{//error
                 op1=null;
                 op2=null;
                 operation=null;
+                eq=true;
                 rez.textContent='error';
                 break;
             }
@@ -263,6 +266,7 @@ function btnFunction(val){
             op1=null;
             op2=null;
             operation=null;
+            eq=false;
             break;
         }
         default:{//if number
@@ -276,6 +280,12 @@ function btnFunction(val){
                 rez.textContent=op1;
                 break;
             }else if(op1 && !operation){
+                if(eq){
+                    eq=false;
+                    op1=val;
+                    rez.textContent=op1;
+                    break;
+                }
                 if(!op1.toString().includes('.',1)){
                     if(op1<0){
                         op1=op1*10-val;
@@ -352,7 +362,7 @@ function checkKeyPress(key){
     }else if(key.keyCode=="57" || key.keyCode=="105"){
         btnFunction(9);
     }else if(key.keyCode=="106"){
-        btnFunction('*');
+        btnFunction('x');
     }else if(key.keyCode=="107"){
         btnFunction('+');
     }else if(key.keyCode=="109"){
