@@ -85,6 +85,7 @@ circle.addEventListener("click",function(){
 let op1=null;
 let op2=null;
 let operation=null;
+let eq=false;
 function btnFunction(val){
     // alert(val);
     switch(val){
@@ -94,20 +95,20 @@ function btnFunction(val){
                 break;
             }
             else if(op1 && op2){
-
+                // alert(op1+"+" +op2);
                 switch(operation){
-                    case '+':op1+=op2;break;
-                    case '-':op1-=op2;break;
-                    case '/':op1/=op2;break;
-                    case 'x':op1*=op2;break;
+                    case '+':op1=parseFloat(op1)+parseFloat(op2);break;
+                    case '-':op1=parseFloat(op1)-parseFloat(op2);break;
+                    case '/':op1=parseFloat(op1)/parseFloat(op2);break;
+                    case 'x':op1=parseFloat(op1)*parseFloat(op2);break;
                 }
-                rez.textContent=op1;
+                rez.textContent=op1.toString().includes('.',1) ? op1.toFixed(4) : op1 ;
                 op2=null; operation='+';
                 break;
             }else{
                 break;
             }
-        };
+        }
         case '-':{
             if(!op1){
                 op1='0';
@@ -121,12 +122,12 @@ function btnFunction(val){
             else if(op1 && op2){
 
                 switch(operation){
-                    case '+':op1+=op2;break;
-                    case '-':op1-=op2;break;
-                    case '/':op1/=op2;break;
-                    case 'x':op1*=op2;break;
+                    case '+':op1=parseFloat(op1)+parseFloat(op2);break;
+                    case '-':op1=parseFloat(op1)-parseFloat(op2);break;
+                    case '/':op1=parseFloat(op1)/parseFloat(op2);break;
+                    case 'x':op1=parseFloat(op1)*parseFloat(op2);break;
                 }
-                rez.textContent=op1;
+                rez.textContent=op1.toString().includes('.',1) ? op1.toFixed(4) : op1 ;
                 op2=null; operation='-';
                 break;
             }else{
@@ -141,12 +142,12 @@ function btnFunction(val){
             else if(op1 && op2){
                 if(op1=='0'){rez.textContent='error';break;}
                 switch(operation){
-                    case '+':op1+=op2;break;
-                    case '-':op1-=op2;break;
-                    case '/':op1/=op2;break;
-                    case 'x':op1*=op2;break;
+                    case '+':op1=parseFloat(op1)+parseFloat(op2);break;
+                    case '-':op1=parseFloat(op1)-parseFloat(op2);break;
+                    case '/':op1=parseFloat(op1)/parseFloat(op2);break;
+                    case 'x':op1=parseFloat(op1)*parseFloat(op2);break;
                 }
-                rez.textContent=op1;
+                rez.textContent=op1.toString().includes('.',1) ? op1.toFixed(4) : op1 ;
                 op2=null; operation='/';
                 break;
             }else{
@@ -161,68 +162,114 @@ function btnFunction(val){
             else if(op1 && op2){
 
                 switch(operation){
-                    case '+':op1+=op2;break;
-                    case '-':op1-=op2;break;
-                    case '/':op1/=op2;break;
-                    case 'x':op1*=op2;break;
+                    case '+':op1=parseFloat(op1)+parseFloat(op2);break;
+                    case '-':op1=parseFloat(op1)-parseFloat(op2);break;
+                    case '/':op1=parseFloat(op1)/parseFloat(op2);break;
+                    case 'x':op1=parseFloat(op1)*parseFloat(op2);break;
                 }
-                rez.textContent=op1;
+                rez.textContent=op1.toString().includes('.',1) ? op1.toFixed(4) : op1 ;
                 op2=null; operation='x';
                 break;
             }else{
                 break;
             }
         };
-        case '.':break;
-        case 'del':{
-            if(op1 && !op2 && !operation){
-                op1=op1.toString().slice(0,op1.toString().length-1);
+        case '.':{
+            if(!op1){
+                // alert('tacka');
+                op1='0'+val;
                 rez.textContent=op1;
                 break;
+            }else if(op1 && !operation){
+                if(op1.toString().includes('.',1)){
+                    // alert('vec ima tacku');
+                   break;
+                }else{
+                    // alert('posle tacke dodaj br');
+                    op1=op1.toString()+val;
+                    rez.textContent=op1;
+                    break;
+                }
             }else if(op1 && !op2 && operation){
-                operation=null;
-                break;
-            }else if(op1 && operation && op2){
-                op2=op2.toString().slice(0,op2.toString().length-1);
+                // alert('tacka 2');
+                op2='0'+val;
                 rez.textContent=op2;
                 break;
+            }else if(op1 && op2 && operation){
+                if(op2.toString().includes('.',1)){
+                    // alert('vec ima tacku 2');
+                   break;
+                }else{
+                    op2=op2.toString()+val;
+                    rez.textContent=op2;
+                    break;
+                }
             }
-            else{break;}
-        };
+        }
+        case 'del':{// if it 'del' a decimal number then all decimals after '.' are delited
+            if(!eq && op1 && !op2 && !operation){
+                if(op1.toString().includes('-',0) && op1.toString().length==2){
+                    op1=null;
+                    rez.textContent='0';
+                }else{
+                    let temp=op1.toString().slice(0,op1.toString().length-1);//string
+                    op1=temp.toString().length==0 ? null : parseInt(temp);
+                    // alert('op1='+op1);
+                    rez.textContent=op1? op1: '0';
+                }
+                break;
+            }else if(!eq && op1 && !op2 && operation){
+                operation=null;
+                break;
+            }else if(!eq && op1 && operation && op2){
+                if(op2.toString().length==2 && op2.toString().includes('-',0)){
+                    op2=null;
+                    rez.textContent='0';
+                }else{
+                    let temp=op2.toString().slice(0,op2.toString().length-1);// type string
+                    op2=temp.toString().length==0 ? null : parseInt(temp);
+                    rez.textContent=op2 ? op2 : '0';
+                }
+                break;
+            }else{break;}
+        }
         case '=':{
             if(op1 && op2 && operation){
                 switch(operation){
-                    case '+':op1+=op2;break;
-                    case '-':op1-=op2;break;
-                    case '/':op1/=op2;break;
-                    case 'x':op1*=op2;break;
+                    case '+':op1=parseFloat(op1)+parseFloat(op2);break;
+                    case '-':op1=parseFloat(op1)-parseFloat(op2);break;
+                    case '/':op1=parseFloat(op1)/parseFloat(op2);break;
+                    case 'x':op1=parseFloat(op1)*parseFloat(op2);break;
                 }
-                rez.textContent=op1;
+                rez.textContent=op1.toString().includes('.',1) ? op1.toFixed(4) : op1 ;
                 // op1=null;
-                //nestoo
                 op2=null;
                 operation=null;
+                eq=true;
                 break;
             }
             else if(op1 && !op2 && !operation){
                 // op1=null;
+                // eq=true;
                 break;
             }else{//error
                 op1=null;
                 op2=null;
                 operation=null;
+                eq=true;
                 rez.textContent='error';
                 break;
             }
-        };
+        }
         case 'reset':{
             rez.textContent='0';
             op1=null;
             op2=null;
-            operatin=null;
+            operation=null;
+            eq=false;
             break;
-        };
-        default:{//ako broj
+        }
+        default:{//if number
             if(!op1){
                 op1=val;
                 rez.textContent=op1;
@@ -233,23 +280,100 @@ function btnFunction(val){
                 rez.textContent=op1;
                 break;
             }else if(op1 && !operation){
-                if(op1<0){
-                    op1=op1*10-val;
+                if(eq){
+                    eq=false;
+                    op1=val;
+                    rez.textContent=op1;
+                    break;
                 }
-                else{
-                    op1=op1*10+val;
+                if(!op1.toString().includes('.',1)){
+                    if(op1<0){
+                        op1=op1*10-val;
+                    }
+                    else{
+                        op1=op1*10+val;
+                    }
+                }else{//decimal
+                    op1=op1.toString().concat(val); 
                 }
                 rez.textContent=op1;
                 break;
             }else if(op1 && !op2 && operation){
-                op2=val;
+                op2=val=='0'? '0' :val ;
                 rez.textContent=op2;
                 break;
             }else if(op1 && op2 && operation){
-                op2=op2*10+val;
+                if(!op2.toString().includes('.',1)){
+                    op2=op2*10+val;
+                }else{//decimal
+                    op2=op2.toString().concat(val);
+                }
                 rez.textContent=op2;
                 break;
             }
-        };
+        }
+    }
+}
+//key codes
+// delete	46
+// 0	48
+// 1	49
+// 2	50
+// 3	51
+// 4	52
+// 5	53
+// 6	54
+// 7	55
+// 8	56
+// 9	57
+// multiply	106 ->'*'
+// add	107 ->'+'
+// subtract	109 ->'-'
+// decimal point  110  ->'.'
+// divide	111 ->'/'
+// equal sign	187 ->'='
+// tab	9  ->'reset'
+
+window.addEventListener("keydown", checkKeyPress,false);
+
+function checkKeyPress(key){
+    // alert(key.keyCode);
+    
+    if(key.keyCode=="46"){
+        btnFunction('del');
+    }else if(key.keyCode=="48" || key.keyCode=="96"){
+        btnFunction(0);
+    }else if(key.keyCode=="49" || key.keyCode=="97"){
+        btnFunction(1);
+    }else if(key.keyCode=="50" || key.keyCode=="98"){
+        btnFunction(2);
+    }else if(key.keyCode=="51" || key.keyCode=="99"){
+        btnFunction(3);
+    }else if(key.keyCode=="52" || key.keyCode=="100"){
+        btnFunction(4);
+    }else if(key.keyCode=="53" || key.keyCode=="101"){
+        btnFunction(5);
+    }else if(key.keyCode=="54" || key.keyCode=="102"){
+        btnFunction(6);
+    }else if(key.keyCode=="55" || key.keyCode=="103"){
+        btnFunction(7);
+    }else if(key.keyCode=="56" || key.keyCode=="104"){
+        btnFunction(8);
+    }else if(key.keyCode=="57" || key.keyCode=="105"){
+        btnFunction(9);
+    }else if(key.keyCode=="106"){
+        btnFunction('x');
+    }else if(key.keyCode=="107"){
+        btnFunction('+');
+    }else if(key.keyCode=="109"){
+        btnFunction('-');
+    }else if(key.keyCode=="190"){
+        btnFunction('.');
+    }else if(key.keyCode=="111" || key.keyCode=="191"){
+        btnFunction('/');
+    }else if(key.keyCode=="27"){
+        btnFunction('reset');
+    }else if(key.keyCode=="187"){
+        btnFunction('=');
     }
 }
